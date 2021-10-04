@@ -16,10 +16,9 @@ simple minimal boilerplate project for projects using Mongo, express and JWT aut
 -clone repository
 
 then, withing the project folder use npm to install dependencies
-
+```bash
 npm install
 ```
-
 for development use 
 ```bash
 npm run dev

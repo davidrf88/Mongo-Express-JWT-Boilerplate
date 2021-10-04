@@ -19,10 +19,26 @@ then, withing the project folder use npm to install dependencies
 ```bash
 npm install
 ```
+
+copy .env-example and rename as .env and update with your mongo URI and app secret(anything works but change it!)
+
 for development use 
 ```bash
 npm run dev
 ```
+
+## Usage
+
+**GET - localhost:5000/api/welcome** 
+ this is just a test to validate the server is up and running
+ 
+**POST - localhost:5000/api/register** 
+expects email and password
+
+**POST - localhost:5000/api/login** 
+expects email and password, returns JWT
+ 
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

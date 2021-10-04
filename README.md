@@ -1,5 +1,15 @@
-# RSVP Project
-create online events and user confirmations 
+# Mongo-Express-JWT-Boilerplate
+
+simple minimal boilerplate project for projects using Mongo, express and JWT auth.
+
+## Libraries 
+
+- **mongoose** - for database interactions, read, writes, models etc...
+- **joi** - for request validations.
+- **jasonwebtoken** - for token creation and validation.
+- **nodemon** - for easy development, automatic server restart on file updates.
+- **dotenv** - for storing sensitiv data and project variables.
+- **cors** - for CORS setup, easy rules to protect your API
 
 ## Installation
 
@@ -7,7 +17,6 @@ create online events and user confirmations
 
 then, withing the project folder use npm to install dependencies
 
-```bash
 npm install
 ```
 

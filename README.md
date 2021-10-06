@@ -33,11 +33,11 @@ npm run dev
 
 this is just a test to validate the server is up and running
  
-**POST - localhost:5000/api/register** 
+**POST - localhost:5000/api/auth/register** 
 
 expects email and password
 
-**POST - localhost:5000/api/login** 
+**POST - localhost:5000/api/auth/login** 
 
 expects email and password, returns JWT
  

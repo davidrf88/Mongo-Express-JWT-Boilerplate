@@ -40,8 +40,11 @@ expects email and password
 **POST - localhost:5000/api/auth/login** 
 
 expects email and password, returns JWT
- 
 
+**POST - localhost:5000/api/auth/changePassword**
+
+expects the new password and a valid JWT on the 'Authorization' header  like this "bearer [token]"
+ 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

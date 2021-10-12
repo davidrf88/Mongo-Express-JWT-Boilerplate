@@ -34,6 +34,7 @@ router.post('/register', async (req, res, next) => {
   try {
     const user = new User();
     user.email = value.email;
+    user.role = 'user'
     //encrypt password
     user.password = await bcrypt.hash(value.password, 10);
     user.username = value.username;
@@ -111,7 +112,7 @@ router.post('/login', async (req, res, next) => {
     }
 
     //at this point we are good we need to generate and send a JWT
-    const token = jwt.sign({ userId: user.id, email: user.email, username: user.username }, process.env.APP_SECRET, { expiresIn: 60000 })
+    const token = jwt.sign({ userId: user.id, email: user.email, username: user.username, role:user.role }, process.env.APP_SECRET, { expiresIn: 60000 })
     return res.json({ success: true, jwt: token });
 
 

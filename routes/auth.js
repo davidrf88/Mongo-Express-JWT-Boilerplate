@@ -51,11 +51,13 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
+//Update user password
 router.post('/changePassword',auth, async (req, res, next) => {
 
   //validation schema
   const schema = Joi.object({
-    password: Joi.string().min(5).max(30).required()
+    currentPassword:Joi.string().min(5).max(30).required(),
+    newPassword: Joi.string().min(5).max(30).required()
   });
 
   //validate request parameters based on the validation schema
@@ -63,17 +65,21 @@ router.post('/changePassword',auth, async (req, res, next) => {
   if (error) { return; }
 
 
-  //validate if email is already taken
+  //get current user
   const user = await User.findOne({ email: req.user.email });
   if (!user) {
     return res.status(400).send({ success: false, message: "invalid update" });
   }
+  const validPassword = await bcrypt.compare(value.currentPassword, user.password);
+    if (!validPassword) {
+      return res.status(400).send({ success: false, message: "invalid user credentials" })
+    }
 
   //Validations that can throw an error
   try {
   
     //encrypt password
-    user.password = await bcrypt.hash(value.password, 10);
+    user.password = await bcrypt.hash(value.newPassword, 10);
     //save the user into the database
 
     const newUser = await user.save();
@@ -121,6 +127,15 @@ router.post('/login', async (req, res, next) => {
     console.log('error' + error);
     return res.status(500).send({ success: false, message: "Error" });
   }
+});
+
+//test accesing a protected resource
+router.get('/protectedResource',auth, async (req, res, next) => {
+  const user = await User.findOne({ email: req.user.email });
+  if (!user) {
+    return res.status(400).send({ success: false, message: "invalid update" });
+  }
+  res.json(`${req.user.email} you have accessed a protected resource successfully `);
 });
 
 module.exports = router;

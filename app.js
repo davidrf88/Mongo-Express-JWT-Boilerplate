@@ -14,7 +14,12 @@ app.use(
   })
 
 )
-mongoose.connect(process.env.MongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+console.log('connecting to database');
+mongoose.connect(process.env.MongoUri, { useNewUrlParser: true, useUnifiedTopology: true }, function(err,param2) {
+  if (err) throw err;
+  else
+  console.log("connection succeed")
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
